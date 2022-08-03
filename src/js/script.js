@@ -7,7 +7,10 @@ $(document).ready(function () {
       '<button type="button" class="slick-next"><img src="icon/arrow-rigth.png"></button>',
   });
   //tabs settings
-  $("ul.catalog__tabs").on( "click",  "li:not(catalog__tab__active)", function () {
+  $("ul.catalog__tabs").on(
+    "click",
+    "li:not(catalog__tab__active)",
+    function () {
       $(this)
         .addClass("catalog__tab__active")
         .siblings()
@@ -36,5 +39,19 @@ $(document).ready(function () {
 
   toggleSlide(".catalog-item__link");
   toggleSlide(".catalog-item__back");
-});
 
+  $("[data-modal=consultation]").on("click", function () {
+    $(".overlay,#consulting").fadeIn("slow");
+  });
+
+  $(".modal__close").on("click", function () {
+    $(".overlay,#consulting,#thank,#order").fadeOut("slow");
+  });
+
+  $(".button_mini").each(function (i) {
+    $(this).on("click", function () {
+      $("#order modal__descr").text($("catalog-item__subtitle").eq(i).text());
+      $(".overlay,#order").fadeIn("slow");
+    });
+  });
+});
